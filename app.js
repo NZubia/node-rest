@@ -3,11 +3,30 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+// Database connection
+const databaseUrl = "mongodb://localhost:27017/restDev";
+const databaseOptions = {
+  useNewUrlParser: true
+};
+
+mongoose.connect(databaseUrl, databaseOptions);
+mongoose.connection.on("open", function(){
+  console.log("MongoDb connection opened")
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(cors({
+  origin: function (origin, callback) {
+    callback(null, true)
+  }
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
