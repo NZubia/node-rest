@@ -21,7 +21,8 @@ const dishSchema = new Schema({
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        values: ["DRINKS", "PASTA", "SOUPS", "SALADS"], // TODO: Enum
     },
 });
 

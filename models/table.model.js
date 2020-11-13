@@ -16,5 +16,5 @@ const tableSchema = new Schema({
 let TableModel = mongoose.model('Table', tableSchema, 'table');
 
 module.exports = {
-    tableSchema
+    TableModel
 };
